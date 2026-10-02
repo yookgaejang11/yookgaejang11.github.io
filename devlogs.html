@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개발 일지 | yookgaejang11</title>
+<meta name="description" content="시즌별 개발 일지">
+<meta name="theme-color" content="#cdc8b6">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="devlogs">
+<header id="top"></header>
+<main class="wrap">
+  <div class="page-head">
+    <h1>개발 일지</h1>
+    <p>만들면서 남긴 기록이에요. 시즌별로 묶여 있고, 프로젝트와 태그로 좁혀 볼 수 있어요.</p>
+  </div>
+  <div class="seasons" id="season-tabs" role="tablist" aria-label="시즌"></div>
+  <div class="log-layout">
+    <nav class="timeline" id="timeline" aria-label="달별 이동"></nav>
+    <div>
+      <div class="toolbar">
+        <label class="sr-only" for="f-q">검색</label>
+        <input class="field" id="f-q" type="search" placeholder="제목, 내용, 태그 검색">
+        <label class="sr-only" for="f-project">프로젝트</label>
+        <select class="field" id="f-project"></select>
+        <button class="chip sort-btn" type="button" id="f-sort">최신순</button>
+      </div>
+      <div class="tagbar" id="tagbar" role="group" aria-label="태그"></div>
+      <div class="lcd proj-card" id="proj-summary" hidden></div>
+      <div id="log-list"></div>
+    </div>
+  </div>
+</main>
+<footer id="foot"></footer>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

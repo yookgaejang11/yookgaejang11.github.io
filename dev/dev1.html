@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Space Gamble 개발 비화 | yookgaejang11</title>
+<meta name="theme-color" content="#cdc8b6">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/story.css">
+</head>
+<body data-page="story" data-kind="project" data-id="space-gamble">
+<header id="top"></header>
+<main class="wrap story">
+  <div id="story-head"></div>
+  <div class="story-gallery" id="story-gallery"></div>
+  <div class="story-cols">
+    <article class="story-body" id="story-body">
+<h2>기획서 v3에서 바뀐 규칙</h2>
+<ul><li>라이프 3개(HP)를 없앴습니다. 사고가 한 번 나면 그 자리에서 게임이 끝납니다.</li><li>사출 버튼은 한 라운드에 한 번만 누릅니다.</li><li>사고 판정을 먼저 하고, 살아남으면 사고 확률이 오르거나 내립니다.</li><li>사고가 나지 않으면 확률을 그대로 이어 가며 카드를 다시 뽑습니다.</li><li>두 숫자가 같으면 따로 연출을 보여 주고 다음 라운드로 넘어갑니다.</li><li>아이템 시스템은 빼고, 그 시간을 이모트와 시선 동기화에 쓰기로 했습니다.</li></ul>
+<h2>Fold 규칙</h2>
+<ul><li>대화 시간 동안 각자 Fold와 Go를 몰래 정하고, 시간이 끝나면 동시에 공개합니다.</li><li>한 명이라도 Fold하면 그 라운드는 아무도 버튼을 누르지 않고 넘어갑니다.</li><li>Fold는 최대 2번까지 쓸 수 있고, 남은 횟수는 상대에게 보이지 않습니다.</li><li>사고 확률은 두 사람 모두에게 공개됩니다.</li></ul>
+<h2>코드 구조</h2>
+<ul><li><code>GameSession</code>: 규칙만 담은 순수 C# 클래스</li><li><code>GameManager</code>: 서버 역할</li><li><code>GameClient</code>: 클라이언트, 내 자리 번호(<code>myIndex</code>)를 가짐</li><li><code>GamePer</code>: 확률과 시간 값을 담은 ScriptableObject</li></ul>
+<p>UI는 팀원이 맡고 있어서 연동 경계를 좁게 잡았습니다. <code>GameClient</code>가 이벤트로 상태를 알리고, UI는 <code>RequestFold</code>, <code>RequestPress</code>, <code>TurnEnd</code> 세 함수만 부릅니다. 연출 길이는 UI 쪽에서 정하고, 연출이 끝나면 <code>TurnEnd()</code>로 알려 줘야 다음 단계로 넘어갑니다.</p>
+<p>라운드는 RoundStart, talkTime, Open, Press, Result, GameOver 순서로 흘러갑니다. 네트워크는 로직이 먼저 다 돌아간 다음, MonoBehaviour를 NetworkBehaviour로 한 번에 바꾸는 순서로 진행하고 있습니다.</p>
+    </article>
+    <aside class="story-side" id="story-side"></aside>
+  </div>
+  <nav class="pager" id="pager" aria-label="다른 글"></nav>
+</main>
+<footer id="foot"></footer>
+<!-- 아래는 관리자 페이지에서 다시 열어 고칠 때 쓰는 마크다운 원문입니다 -->
+<script type="text/markdown" id="story-md">
+## 기획서 v3에서 바뀐 규칙
+
+- 라이프 3개(HP)를 없앴습니다. 사고가 한 번 나면 그 자리에서 게임이 끝납니다.
+- 사출 버튼은 한 라운드에 한 번만 누릅니다.
+- 사고 판정을 먼저 하고, 살아남으면 사고 확률이 오르거나 내립니다.
+- 사고가 나지 않으면 확률을 그대로 이어 가며 카드를 다시 뽑습니다.
+- 두 숫자가 같으면 따로 연출을 보여 주고 다음 라운드로 넘어갑니다.
+- 아이템 시스템은 빼고, 그 시간을 이모트와 시선 동기화에 쓰기로 했습니다.
+
+## Fold 규칙
+
+- 대화 시간 동안 각자 Fold와 Go를 몰래 정하고, 시간이 끝나면 동시에 공개합니다.
+- 한 명이라도 Fold하면 그 라운드는 아무도 버튼을 누르지 않고 넘어갑니다.
+- Fold는 최대 2번까지 쓸 수 있고, 남은 횟수는 상대에게 보이지 않습니다.
+- 사고 확률은 두 사람 모두에게 공개됩니다.
+
+## 코드 구조
+
+- `GameSession`: 규칙만 담은 순수 C# 클래스
+- `GameManager`: 서버 역할
+- `GameClient`: 클라이언트, 내 자리 번호(`myIndex`)를 가짐
+- `GamePer`: 확률과 시간 값을 담은 ScriptableObject
+
+UI는 팀원이 맡고 있어서 연동 경계를 좁게 잡았습니다. `GameClient`가 이벤트로 상태를 알리고, UI는 `RequestFold`, `RequestPress`, `TurnEnd` 세 함수만 부릅니다. 연출 길이는 UI 쪽에서 정하고, 연출이 끝나면 `TurnEnd()`로 알려 줘야 다음 단계로 넘어갑니다.
+
+라운드는 RoundStart, talkTime, Open, Press, Result, GameOver 순서로 흘러갑니다. 네트워크는 로직이 먼저 다 돌아간 다음, MonoBehaviour를 NetworkBehaviour로 한 번에 바꾸는 순서로 진행하고 있습니다.
+
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

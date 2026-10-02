@@ -1,0 +1,156 @@
+/* ============================================================
+   개발 비화 / 상세 글 공용 스타일 (site.css 다음에 불러오기)
+   ============================================================ */
+
+.story { padding-top: 36px; }
+.story-back {
+  font-family: var(--px);
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.story-back:hover { color: var(--accent); }
+.story-head { margin-top: 14px; display: grid; gap: 14px; }
+.story-head h1 { font-family: var(--px); font-weight: 400; font-size: clamp(28px, 4.4vw, 44px); }
+.story-kind { font-family: var(--px); font-size: 14px; color: var(--ink-soft); }
+
+.oneliner {
+  padding: 16px 20px;
+  font-size: 17px;
+  max-width: 46em;
+}
+.oneliner b { font-family: var(--px); font-weight: 400; font-size: 13px; display: block; color: var(--lcd2); margin-bottom: 2px; }
+
+.story-gallery {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.story-gallery .shot-btn {
+  all: unset;
+  cursor: zoom-in;
+  display: block;
+}
+.story-gallery .shot-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.story-gallery .shot { aspect-ratio: 16 / 10; }
+.story-gallery > :first-child { grid-column: span 2; grid-row: span 2; }
+.story-gallery > :first-child .shot { aspect-ratio: auto; height: 100%; min-height: 180px; }
+
+dialog.zoom {
+  border: 0; padding: 0; background: transparent;
+  max-width: calc(100vw - 32px); max-height: calc(100vh - 32px);
+}
+dialog.zoom::backdrop { background: rgba(31, 51, 34, .85); }
+dialog.zoom img { max-width: calc(100vw - 32px); max-height: calc(100vh - 90px); box-shadow: 0 0 0 6px var(--bezel); }
+dialog.zoom .zoom-bar { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; }
+dialog.zoom .zoom-bar button {
+  border: 0; background: var(--label); color: var(--ink);
+  font-family: var(--px); font-size: 13px;
+  padding: 8px 12px 7px; border-radius: 4px; cursor: pointer;
+}
+
+.story-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 48px;
+  margin-top: 40px;
+  align-items: start;
+}
+.story-side { position: sticky; top: 84px; display: grid; gap: 22px; }
+.story-side h2 { font-family: var(--px); font-size: 13px; font-weight: 400; color: var(--ink-soft); margin-bottom: 8px; }
+.story-side .facts { grid-template-columns: minmax(0, 1fr); gap: 0; font-size: 15px; }
+.story-side .facts dd { margin-bottom: 10px; }
+
+/* 본문 */
+.story-body {
+  max-width: 44em;
+  font-size: 17px;
+  line-height: 1.8;
+  counter-reset: sec;
+}
+.story-body > * + * { margin-top: 1.1em; }
+.story-body h2 {
+  counter-increment: sec;
+  font-family: var(--px);
+  font-weight: 400;
+  font-size: 24px;
+  margin-top: 2.2em;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+.story-body h2::before {
+  content: counter(sec, decimal-leading-zero);
+  font-size: 14px;
+  color: var(--lcd0);
+  background: var(--lcd3);
+  padding: 4px 6px 3px;
+  border-radius: 2px;
+  transform: translateY(-3px);
+}
+.story-body > h2:first-child { margin-top: 0; }
+.story-body h3 { font-size: 19px; margin-top: 1.8em; }
+.story-body ul, .story-body ol { padding-left: 1.3em; }
+.story-body li + li { margin-top: .3em; }
+.story-body img {
+  border-radius: 3px;
+  box-shadow: 0 0 0 6px var(--bezel);
+  margin: 1.6em 0 1.6em 6px;
+  max-width: calc(100% - 12px);
+}
+.story-body blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 14px 18px;
+  background: var(--lcd0);
+  color: var(--lcd3);
+  border-left: 6px solid var(--lcd2);
+}
+.story-body code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: .9em;
+  background: rgba(44, 47, 70, .1);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.story-body pre {
+  background: var(--lcd3);
+  color: var(--lcd0);
+  padding: 16px 18px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.story-body pre code { background: none; padding: 0; color: inherit; }
+.story-body a { color: var(--accent); }
+.story-body hr { border: 0; border-top: 2px dashed var(--shell-deep); margin: 2.4em 0; }
+
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 64px;
+}
+.pager a {
+  display: block;
+  padding: 14px 18px;
+  text-decoration: none;
+  background: var(--shell-hi);
+  box-shadow: 0 3px 0 var(--shell-lo), inset 0 0 0 1px var(--shell-lo);
+  border-radius: 4px;
+}
+.pager a:hover { box-shadow: 0 3px 0 var(--shell-lo), inset 0 0 0 2px var(--ink); }
+.pager small { display: block; font-family: var(--px); font-size: 12px; color: var(--ink-soft); }
+.pager strong { font-weight: 600; }
+.pager .next { text-align: right; grid-column: 2; }
+
+@media (max-width: 860px) {
+  .story-cols { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .story-side { position: static; order: -1; }
+  .story-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .story-body { font-size: 16px; }
+  .pager { grid-template-columns: minmax(0, 1fr); }
+  .pager .next { grid-column: 1; }
+}
