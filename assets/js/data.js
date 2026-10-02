@@ -47,5 +47,15 @@ window.SITE = {
       "story": "dev/dev1.html"
     }
   ],
-  "devlogs": []
+  "devlogs": [
+    {
+      "no": 1,
+      "date": "2026-10-02",
+      "title": "방 진입시 플레이어 위치 초기화",
+      "project": "space-gamble",
+      "tags": ["Game-System"],
+      "thumb": "",
+      "summary": "플레이어 방 진입시 모델 위치가  초기화가 되도록 만들었습니다. 코드는 있는데 제가 디자이너가 아니라 올릴 사진이 없습니다. "
+    }
+  ]
 };
