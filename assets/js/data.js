@@ -65,6 +65,15 @@ window.SITE = {
       "tags": ["Game-System", "Game-Design"],
       "thumb": "devlog/Thumb/2.png",
       "summary": "게임을 테스트하다보니 임팩트가 부족하다 생각해 사출 버튼을  누를 때 해당 페이즈만 사출 확률이 1.5배 상승하는 선택지를 만들었고 플레이어 시선 동기화 코드를 추가했습니다. 추가로 테이블 디자인을 변경했습니다."
+    },
+    {
+      "no": 3,
+      "date": "2026-10-12",
+      "title": "기능 연동,메인 UI 만들기",
+      "project": "space-gamble",
+      "tags": ["Game-System", "Game-Design"],
+      "thumb": "devlog/Thumb/3.png",
+      "summary": "메뉴 UI 만들었고, 인게임 씬에 기능 연동했습니다."
     }
   ]
 };
