@@ -74,6 +74,15 @@ window.SITE = {
       "tags": ["Game-System", "Game-Design"],
       "thumb": "devlog/Thumb/3.png",
       "summary": "메뉴 UI 만들었고, 인게임 씬에 기능 연동했습니다."
+    },
+    {
+      "no": 4,
+      "date": "2026-10-14",
+      "title": "UI 연결",
+      "project": "space-gamble",
+      "tags": ["Game-System"],
+      "thumb": "devlog/Thumb/4.png",
+      "summary": "UI가 실시간 작동하도록 event를 활용하여 스크립트로 연결하고, 중간에 게임을 나갈 수 있도록 설정했습니다."
     }
   ]
 };
