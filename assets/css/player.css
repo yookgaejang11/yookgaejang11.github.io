@@ -1,0 +1,177 @@
+/* ============================================================
+   막넣 플레이어 (player.html) — site.css 다음에 불러오기
+   본체·베젤·버튼 모양은 site.css의 .console 계열을 그대로 씁니다.
+   ============================================================ */
+
+.pl-notice {
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  background: var(--label);
+  font-size: 14px;
+}
+.pl-notice code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 13px;
+  background: rgba(44, 47, 70, .1);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.pl-console { margin-top: 24px; }
+
+/* 화면 */
+.pl-screen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #10140f;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pl-screen iframe,
+.pl-screen #player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.pl-idle {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  font-family: var(--px);
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+/* 화면 아래 액정 한 줄 */
+.pl-now { margin-top: 12px; padding: 10px 14px 11px; min-width: 0; }
+.pl-now-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.pl-now-title {
+  font-family: var(--px);
+  font-size: 17px;
+  line-height: 1.35;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pl-now-sub { margin-top: 2px; font-size: 13px; color: var(--lcd2); overflow-wrap: anywhere; }
+
+/* 재생 중 막대 */
+.eq { display: inline-flex; gap: 2px; align-items: flex-end; height: 14px; flex: none; }
+.eq i { width: 4px; height: 4px; background: var(--lcd3); }
+body.is-playing .eq i { animation: eq .9s steps(4) infinite alternate; }
+body.is-playing .eq i:nth-child(2) { animation-delay: -.3s; }
+body.is-playing .eq i:nth-child(3) { animation-delay: -.6s; }
+@keyframes eq { from { height: 3px; } to { height: 14px; } }
+
+/* 조작부 */
+.dwrap { display: grid; justify-items: center; gap: 12px; justify-self: center; }
+.dwrap .lbl { font-family: var(--px); font-size: 11px; color: var(--ink); white-space: nowrap; }
+.dpad .u, .dpad .d { font-size: 11px; }
+button.pill { border: 0; background: none; padding: 0; cursor: pointer; font: inherit; color: inherit; }
+.pill .lbl { white-space: nowrap; }
+.pill[aria-pressed="true"] .cap { background: var(--accent); box-shadow: 0 2px 0 var(--accent-lo); }
+.pill[aria-disabled="true"] { opacity: .4; pointer-events: none; }
+.pl-controls .pills { gap: 30px; }
+
+/* 붙여넣기 · 대기열 */
+.pl-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  gap: 32px;
+  align-items: start;
+  margin-top: 48px;
+}
+.pl-drop {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 2px dashed var(--ink-soft);
+  border-radius: 6px;
+}
+.pl-drop.hot { border-style: solid; border-color: var(--accent); background: rgba(163, 36, 90, .05); }
+.pl-drop h2, .q-head h2 { font-family: var(--px); font-size: 18px; font-weight: 400; }
+.pl-drop p { font-size: 14px; color: var(--ink-soft); }
+.pl-drop textarea { min-height: 84px; resize: vertical; font: 13px/1.5 ui-monospace, Consolas, monospace; }
+.pl-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.result { flex: 1 1 160px; min-height: 1.5em; font-size: 14px; color: var(--ink-soft); }
+.result b { color: var(--ink); font-weight: 700; }
+.pl-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.btn.warn { background: #9b1c1c; color: #fff; box-shadow: 0 3px 0 #6d1212; }
+.formats { margin-top: 16px; font-size: 12.5px; line-height: 1.7; color: var(--ink-soft); }
+
+.q-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.q-head .counts { font-family: var(--px); font-size: 13px; color: var(--ink-soft); }
+ol.q {
+  list-style: none;
+  display: grid;
+  gap: 2px;
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+}
+ol.q:empty { display: none; }
+li.item {
+  display: grid;
+  grid-template-columns: 28px 104px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px 8px 6px;
+  background: var(--shell-hi);
+  cursor: pointer;
+}
+li.item:hover { background: var(--label); }
+li.item.cur { background: var(--lcd0); color: var(--lcd3); }
+li.item:focus-visible { outline-offset: -3px; }
+li.item.dragging { opacity: .4; }
+li.item.over { box-shadow: inset 0 0 0 3px var(--accent); }
+.idx { font-family: var(--px); font-size: 13px; color: var(--ink-soft); text-align: right; }
+.thumb { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--lcd3); border-radius: 2px; }
+.thumb.pl { display: grid; place-items: center; color: var(--lcd0); font-family: var(--px); font-size: 12px; }
+.info { display: grid; gap: 4px; min-width: 0; }
+.ttl {
+  font-size: 14.5px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+li.cur .ttl { font-weight: 700; }
+.qmeta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-width: 0; font-size: 12px; color: var(--ink-soft); }
+li.cur .qmeta, li.cur .idx { color: var(--lcd2); }
+.qmeta .who { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sticker.bad { background: #9b1c1c; }
+.acts { display: flex; gap: 4px; }
+.ib {
+  width: 30px; height: 30px;
+  border: 0; border-radius: 3px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px var(--shell-lo);
+}
+li.cur .ib { color: var(--lcd2); box-shadow: inset 0 0 0 1px var(--lcd1); }
+.ib:hover { background: var(--ink); color: var(--lcd0); }
+.ib.del:hover { background: #9b1c1c; color: #fff; }
+
+@media (max-width: 860px) {
+  .pl-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; margin-top: 36px; }
+}
+@media (max-width: 520px) {
+  .pl-now-title { font-size: 15px; }
+  li.item { grid-template-columns: 20px 76px minmax(0, 1fr); gap: 10px; row-gap: 4px; }
+  .acts { grid-column: 3; justify-self: end; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.is-playing .eq i { height: 10px; }
+}

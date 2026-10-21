@@ -171,7 +171,7 @@
             '<button class="btn-round" type="button" id="btn-a"><span class="cap">A</span><span class="lbl">선택</span></button>' +
           '</div>' +
           '<div class="pills">' +
-            '<a class="pill" href="#lcd-menu" id="btn-select"><span class="cap"></span><span class="lbl">SELECT</span></a>' +
+            '<a class="pill" href="' + url('player.html') + '" id="btn-select" aria-label="SELECT, 막넣 플레이어 열기"><span class="cap"></span><span class="lbl">SELECT</span></a>' +
             '<a class="pill" href="' + url('projects.html') + '"><span class="cap"></span><span class="lbl">START</span></a>' +
           '</div>' +
           '<div class="grille" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>' +
@@ -207,7 +207,6 @@
     $all('.dpad button').forEach(function (b) {
       b.addEventListener('click', function () { setCursor(cur + Number(b.getAttribute('data-dir'))); });
     });
-    $('#btn-select').addEventListener('click', function (e) { e.preventDefault(); setCursor(cur + 1); });
     $('#btn-a').addEventListener('click', function () { menu[cur].click(); });
     var b = $('#btn-b');
     if (b) b.addEventListener('click', function () {

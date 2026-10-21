@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>막넣 플레이어</title>
+<meta name="description" content="유튜브 링크를 붙여넣으면 대기열에 넣고 이어서 틀어 주는 플레이어">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#cdc8b6">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/player.css">
+</head>
+<body data-page="player">
+<header id="top"></header>
+<main class="wrap">
+  <div class="page-head">
+    <h1>막넣 플레이어</h1>
+    <p>유튜브 링크를 아무렇게나 붙여넣으면 알아서 골라 대기열에 넣고 이어서 틀어 줘요.</p>
+  </div>
+
+  <div class="pl-notice" id="notice" hidden></div>
+
+  <section class="console pl-console" aria-label="플레이어">
+    <div class="bezel">
+      <div class="bezel-top" aria-hidden="true"><span class="pwr"></span>POWER<span class="line"></span></div>
+      <div class="pl-screen">
+        <div id="player"></div>
+        <div class="lcd pl-idle" id="idle"><p id="idleText">플레이어 불러오는 중…</p></div>
+      </div>
+      <div class="lcd pl-now">
+        <div class="pl-now-row">
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+          <p class="pl-now-title" id="nowTitle">재생 대기 중</p>
+        </div>
+        <p class="pl-now-sub" id="nowSub">링크를 붙여넣으면 바로 시작해요</p>
+      </div>
+    </div>
+
+    <div class="controls pl-controls">
+      <div class="dwrap">
+        <div class="dpad" role="group" aria-label="곡 이동과 볼륨">
+          <button class="u" type="button" id="volUp" aria-label="볼륨 올리기">▲</button>
+          <button class="l" type="button" id="prevBtn" aria-label="이전 곡">◀</button>
+          <span class="c"></span>
+          <button class="r" type="button" id="nextBtn" aria-label="다음 곡">▶</button>
+          <button class="d" type="button" id="volDown" aria-label="볼륨 내리기">▼</button>
+        </div>
+        <span class="lbl" aria-hidden="true">◀▶ 곡 &nbsp;▲▼ 볼륨</span>
+      </div>
+      <div class="ab">
+        <button class="btn-round" type="button" id="shuffleBtn" aria-label="남은 곡 섞기"><span class="cap">B</span><span class="lbl">섞기</span></button>
+        <button class="btn-round" type="button" id="playBtn" aria-label="재생"><span class="cap">A</span><span class="lbl" id="playLbl">재생</span></button>
+      </div>
+      <div class="pills">
+        <button class="pill" type="button" id="repeatBtn" aria-pressed="false"><span class="cap"></span><span class="lbl" id="repeatLbl">반복 꺼짐</span></button>
+        <a class="pill" id="ytOpen" target="_blank" rel="noopener" aria-disabled="true" aria-label="YouTube에서 이어 틀기"><span class="cap"></span><span class="lbl">YouTube</span></a>
+      </div>
+      <div class="grille" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <div class="pl-grid">
+    <section aria-labelledby="drop-title">
+      <div class="pl-drop" id="drop">
+        <h2 id="drop-title">링크 붙여넣기</h2>
+        <p>여러 개를 한꺼번에, 줄바꿈 없이 붙어 있어도 괜찮아요. 페이지 아무 데서나 Ctrl+V 하거나 브라우저 탭의 링크를 끌어다 놓아도 들어가요.</p>
+        <label class="sr-only" for="box">유튜브 링크</label>
+        <textarea class="field" id="box" spellcheck="false" placeholder="https://youtu.be/…  https://www.youtube.com/shorts/…  https://www.youtube.com/playlist?list=…"></textarea>
+        <div class="pl-row">
+          <div class="result" id="result" aria-live="polite"></div>
+          <button class="btn primary" type="button" id="addBtn">넣기</button>
+        </div>
+      </div>
+      <div class="pl-tools">
+        <button class="btn ghost" type="button" id="copyBtn">목록 링크 복사</button>
+        <button class="btn ghost" type="button" id="clearBtn">전부 비우기</button>
+      </div>
+      <p class="formats">알아보는 형식: youtube.com/watch?v=, youtu.be/, /shorts/, /live/, /embed/, music.youtube.com, /playlist?list=, 시작 시간 t=1m30s</p>
+    </section>
+
+    <section aria-labelledby="q-title">
+      <div class="q-head">
+        <h2 id="q-title">대기열</h2>
+        <span class="counts" id="counts"></span>
+      </div>
+      <ol class="q" id="list"></ol>
+      <div class="empty" id="empty"><strong>아직 비어 있어요</strong>왼쪽 칸이나 페이지 아무 데나 유튜브 링크를 붙여넣으면 바로 재생돼요.</div>
+    </section>
+  </div>
+</main>
+<footer id="foot"></footer>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/player.js"></script>
+</body>
+</html>
