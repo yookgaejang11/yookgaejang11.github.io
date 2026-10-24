@@ -83,6 +83,15 @@ window.SITE = {
       "tags": ["Game-System"],
       "thumb": "devlog/Thumb/4.png",
       "summary": "UI가 실시간 작동하도록 event를 활용하여 스크립트로 연결하고, 중간에 게임을 나갈 수 있도록 설정했습니다."
+    },
+    {
+      "no": 5,
+      "date": "2026-10-25",
+      "title": "애니메이션 툴 공부, 마이크 추가 홀로그램 가독성 올리기",
+      "project": "space-gamble",
+      "tags": [],
+      "thumb": "",
+      "summary": "인겜 보이스 추가했고, 홀로그램 안의 텍스트가 너무 안보여서 수정했습니다."
     }
   ]
 };
