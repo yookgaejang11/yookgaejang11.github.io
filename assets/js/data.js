@@ -92,6 +92,15 @@ window.SITE = {
       "tags": [],
       "thumb": "",
       "summary": "인겜 보이스 추가했고, 홀로그램 안의 텍스트가 너무 안보여서 수정했습니다."
+    },
+    {
+      "no": 6,
+      "date": "2026-10-26",
+      "title": "설정창, 마이크 UI 개발",
+      "project": "space-gamble",
+      "tags": ["Game-System"],
+      "thumb": "devlog/Thumb/6.png",
+      "summary": "마이크 모드, 키, 상대 볼륨, 내 볼륨 설정 추가했습니다"
     }
   ]
 };
