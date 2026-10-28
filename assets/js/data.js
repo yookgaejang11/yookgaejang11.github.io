@@ -101,6 +101,15 @@ window.SITE = {
       "tags": ["Game-System"],
       "thumb": "devlog/Thumb/6.png",
       "summary": "마이크 모드, 키, 상대 볼륨, 내 볼륨 설정 추가했습니다"
+    },
+    {
+      "no": 7,
+      "date": "2026-10-29",
+      "title": "디자인 손보기",
+      "project": "space-gamble",
+      "tags": ["Game-Design"],
+      "thumb": "devlog/Thumb/7.png",
+      "summary": "포스트프로세싱 추가했고, 버튼이 테이블 led 가리던 불편한거 수정했습니다. 애니메이션을 자주 다뤄보지 않아서 시간이 오래 걸려습니다."
     }
   ]
 };
